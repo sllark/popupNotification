@@ -222,12 +222,40 @@
 
   var timeOut,
       isChange=true,
-      intervalTime=(5000+(Math.random()*1000));
+      isVisible=true,
+      popUpInterval,
+      intervalTime=(3500+(Math.random()*1000));
 
-  setInterval(function (e) {
-      popupNotification__container.classList.toggle('hide');
-      // timeOut=setTimeout(changeContent,500);
-     
+
+    popUpInterval=setInterval(togglePopup,intervalTime);
+  
+  
+  function togglePopup() {
+
+          popupNotification__container.classList.toggle('hide');
+
+
+          if(isVisible){
+              changeContent();
+              clearInterval(popUpInterval);
+              intervalTime=(5000+(Math.random()*1000));
+              popUpInterval=setInterval(togglePopup,intervalTime);
+              isVisible=(!isVisible);
+
+          }else{
+              changeContent();
+              clearInterval(popUpInterval);
+              intervalTime=(3500+(Math.random()*1000));
+              popUpInterval=setInterval(togglePopup,intervalTime);
+              isVisible=(!isVisible);
+          }
+          // timeOut=setTimeout(changeContent,500);
+
+          
+          
+  }
+  
+  function changeContent() {
       isChange=(!isChange);
       //Adding content to the Elements Appended
       if(isChange){
@@ -236,12 +264,7 @@
           popupContenth2.innerHTML=popupInfo[randNum].h2;
           popupContenth1.innerHTML=popupInfo[randNum].h1;
           popupContentP.innerHTML=popupInfo[randNum].p;
-      }  },intervalTime);
-  
-  
-  function changeContent() {
-      clearTimeout(timeOut);
-      
+      }
   }
   
   
