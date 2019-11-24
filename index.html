@@ -220,64 +220,121 @@
 
 
 
-  var timeOut,
-      isChange=true,
-      isVisible=true,
-      popUpInterval,
-      intervalTime=(3500+(Math.random()*1000));
 
 
-    popUpInterval=setInterval(togglePopup,intervalTime);
-  
-  
-  function togglePopup() {
-
-          popupNotification__container.classList.toggle('hide');
 
 
-          if(isVisible){
-              isChange=(!isChange);
-              //Adding content to the Elements Appended
-              if(isChange){
-                  var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
-                  popupImageImg.src=popupInfo[randNum].img;
-                  popupContenth2.innerHTML=popupInfo[randNum].h2;
-                  popupContenth1.innerHTML=popupInfo[randNum].h1;
-                  popupContentP.innerHTML=popupInfo[randNum].p;
-              }
-              
-              clearInterval(popUpInterval);
-              intervalTime=(5000+(Math.random()*1000));
-              popUpInterval=setInterval(togglePopup,intervalTime);
-              isVisible=(!isVisible);
 
-          }else{
-              isChange=(!isChange);
-              //Adding content to the Elements Appended
-              if(isChange){
-                  var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
-                  popupImageImg.src=popupInfo[randNum].img;
-                  popupContenth2.innerHTML=popupInfo[randNum].h2;
-                  popupContenth1.innerHTML=popupInfo[randNum].h1;
-                  popupContentP.innerHTML=popupInfo[randNum].p;
-              }
-              clearInterval(popUpInterval);
-              intervalTime=(3500+(Math.random()*1000));
-              popUpInterval=setInterval(togglePopup,intervalTime);
-              isVisible=(!isVisible);
-          }
-          // timeOut=setTimeout(changeContent,500);
 
-          
-          
-  }
-  
-  function changeContent() {
-  
-  }
-  
-  
-  
+    var isChange=true,
+        isVisible=true,
+        popUpInterval,
+        intervalRandValue=(3500+(Math.random()*1000)),
+        timeCounter=0,
+        changeContentInterval;
+
+
+    popUpInterval=setInterval(function(){
+        timeCounter+=200;
+        
+        
+        if(isVisible && timeCounter>intervalRandValue){
+            popupNotification__container.classList.toggle('hide');
+            timeCounter=0;
+            changeContentInterval=setTimeout(togglePopup,1000);
+            intervalRandValue=(5000+(Math.random()*1000));
+        }else if(!isVisible && timeCounter>intervalRandValue){
+            popupNotification__container.classList.toggle('hide');
+            timeCounter=0;
+            intervalRandValue=(3500+(Math.random()*1000));
+            isVisible=(!isVisible);
+        }
+    },200);
+
+
+    function togglePopup() {
+
+        console.log('in');
+        var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
+        popupImageImg.src=popupInfo[randNum].img;
+        popupContenth2.innerHTML=popupInfo[randNum].h2;
+        popupContenth1.innerHTML=popupInfo[randNum].h1;
+        popupContentP.innerHTML=popupInfo[randNum].p;
+        
+        
+        clearTimeout(changeContentInterval);
+        isVisible=(!isVisible);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // var isChange=true,
+    //     isVisible=true,
+    //     popUpInterval,
+    //     intervalTime=(3500+(Math.random()*1000));
+    //
+    //
+    // popUpInterval=setInterval(togglePopup,intervalTime);
+    //
+    //
+    // function togglePopup() {
+    //
+    //     popupNotification__container.classList.toggle('hide');
+    //
+    //
+    //     if(isVisible){
+    //         isChange=(!isChange);
+    //         //Adding content to the Elements Appended
+    //         if(isChange){
+    //             var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
+    //             popupImageImg.src=popupInfo[randNum].img;
+    //             popupContenth2.innerHTML=popupInfo[randNum].h2;
+    //             popupContenth1.innerHTML=popupInfo[randNum].h1;
+    //             popupContentP.innerHTML=popupInfo[randNum].p;
+    //         }
+    //
+    //         clearInterval(popUpInterval);
+    //         intervalTime=(5000+(Math.random()*1000));
+    //         popUpInterval=setInterval(togglePopup,intervalTime);
+    //         isVisible=(!isVisible);
+    //
+    //     }else{
+    //         isChange=(!isChange);
+    //         //Adding content to the Elements Appended
+    //         if(isChange){
+    //             var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
+    //             popupImageImg.src=popupInfo[randNum].img;
+    //             popupContenth2.innerHTML=popupInfo[randNum].h2;
+    //             popupContenth1.innerHTML=popupInfo[randNum].h1;
+    //             popupContentP.innerHTML=popupInfo[randNum].p;
+    //         }
+    //         clearInterval(popUpInterval);
+    //         intervalTime=(3500+(Math.random()*1000));
+    //         popUpInterval=setInterval(togglePopup,intervalTime);
+    //         isVisible=(!isVisible);
+    //     }
+    // }
+
 
 </script>
 
