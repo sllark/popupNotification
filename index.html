@@ -236,14 +236,31 @@
 
 
           if(isVisible){
-              changeContent();
+              isChange=(!isChange);
+              //Adding content to the Elements Appended
+              if(isChange){
+                  var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
+                  popupImageImg.src=popupInfo[randNum].img;
+                  popupContenth2.innerHTML=popupInfo[randNum].h2;
+                  popupContenth1.innerHTML=popupInfo[randNum].h1;
+                  popupContentP.innerHTML=popupInfo[randNum].p;
+              }
+              
               clearInterval(popUpInterval);
               intervalTime=(5000+(Math.random()*1000));
               popUpInterval=setInterval(togglePopup,intervalTime);
               isVisible=(!isVisible);
 
           }else{
-              changeContent();
+              isChange=(!isChange);
+              //Adding content to the Elements Appended
+              if(isChange){
+                  var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
+                  popupImageImg.src=popupInfo[randNum].img;
+                  popupContenth2.innerHTML=popupInfo[randNum].h2;
+                  popupContenth1.innerHTML=popupInfo[randNum].h1;
+                  popupContentP.innerHTML=popupInfo[randNum].p;
+              }
               clearInterval(popUpInterval);
               intervalTime=(3500+(Math.random()*1000));
               popUpInterval=setInterval(togglePopup,intervalTime);
@@ -256,15 +273,7 @@
   }
   
   function changeContent() {
-      isChange=(!isChange);
-      //Adding content to the Elements Appended
-      if(isChange){
-          var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
-          popupImageImg.src=popupInfo[randNum].img;
-          popupContenth2.innerHTML=popupInfo[randNum].h2;
-          popupContenth1.innerHTML=popupInfo[randNum].h1;
-          popupContentP.innerHTML=popupInfo[randNum].p;
-      }
+  
   }
   
   
