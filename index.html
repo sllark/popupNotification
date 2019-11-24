@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  
+  
+  <style>
+    
+    *{
+      border: 0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+  
+    }
+    body{
+      width: 100vw;
+      height: 100vh;
+      background-color: #C4CAD3;
+    }
+    
+    .popupNotification{
+      min-width: 370px;
+      min-height: 110px;
+      width: 370px;
+      height: 110px;
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      /*background-color: red;*/
+      /*transition: all 0.5s;*/
+      overflow: hidden;
+    }
+    .popupNotification__container{
+      background-color: white;
+      border-radius: 60px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 10px;
+      transition: all 1s;
+    }
+    
+    .popupImage{
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      /*background-color: black;*/
+      /*box-shadow: 5px 5px 5px rgba(0,0,0,0.4);*/
+      border: 1px solid #C4CAD3;
+      width: 25%;
+    }
+    .popupImage img{
+      width: auto;
+      height: 90%;
+      
+    }
+    
+    
+    .popupContent{
+      height: 100%;
+      overflow: hidden;
+      margin: 0 8px;
+      width: 70%;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+    }
+    .popupContent__top{
+      display: flex;
+      flex-flow: column;
+    }
+    .popupContent__top h2{
+      font-size: 14px;
+      color: #001b3e;
+    }
+    .popupContent__top h1{
+      font-size: 18px;
+      padding-top: 2px;
+      letter-spacing: 0.5px;
+      color: #000811;
+    }
+    
+  
+    .hide{
+      transform: translateY(120%);
+    }
+  </style>
+  
+</head>
+<body>
+
+
+<!--<div class="popupNotification">-->
+  <!--<div class="popupNotification__container">-->
+    <!--<div class="popupImage">-->
+      <!--<img src="img/icon1.png" alt="">-->
+    <!--</div>-->
+    <!--<div class="popupContent">-->
+      <!--<div class="popupContent__top">-->
+        <!--<h2>Richard at DA Purchased</h2>-->
+        <!--<h1>The Best Ceiling Fan</h1>-->
+      <!--</div>-->
+      <!--<div class="popupContent__bottom">-->
+        <!--<p>3 Hours ago</p>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+
+
+<script>
+
+    //array of product information
+    var popupInfo=[
+        {
+            img:'img/icon1.png',
+            h2:'Richard at DA Purchased',
+            h1:'The Best Ceiling Fan',
+            p:'3 Hours ago',
+        },
+        {
+            img:'img/icon2.png',
+            h2:'Richard at DA Purchased',
+            h1:'The Best Ceiling Fan',
+            p:'1 Hours ago',
+        },
+        {
+            img:'img/icon3.png',
+            h2:'Richard at DA Purchased',
+            h1:'The Best Ceiling Fan',
+            p:'2 Hours ago',
+        },
+        {
+            img:'img/icon4.png',
+            h2:'Richard at DA Purchased',
+            h1:'The Best Ceiling Fan',
+            p:'10 minutes ago',
+        },
+        {
+            img:'img/icon5.png',
+            h2:'Richard at DA Purchased',
+            h1:'The Best Ceiling Fan',
+            p:'30 minutes ago',
+        },
+        {
+            img:'img/icon6.png',
+            h2:'Richard at DA Purchased',
+            h1:'The Best Ceiling Fan',
+            p:'5 minutes ago',
+        },
+        {
+            img:'img/icon7.png',
+            h2:'Richard at DA Purchased',
+            h1:'The Best Ceiling Fan',
+            p:'1 Hour ago',
+        },
+
+    ];
+
+    
+
+    //Creating all elements for Popup
+  var popupNotification=document.createElement('div'),
+      popupNotification__container=document.createElement('div'),
+      popupImage=document.createElement('div'),
+      popupContent=document.createElement('div'),
+      popupImageImg=document.createElement('img'),
+      popupContent__top=document.createElement('div'),
+      popupContent__bottom=document.createElement('div'),
+      popupContenth2=document.createElement('h2'),
+      popupContenth1=document.createElement('h1'),
+      popupContentP=document.createElement('p');
+
+
+  //Adding classes to all elements
+  popupNotification.classList.add('popupNotification');
+  popupNotification__container.classList.add('popupNotification__container');
+  popupImage.classList.add('popupImage');
+  popupContent.classList.add('popupContent');
+  popupContent__top.classList.add('popupContent__top');
+  popupContent__bottom.classList.add('popupContent__bottom');
+  popupImage.classList.add('popupImage');
+  popupImage.classList.add('popupImage');
+  popupImage.classList.add('popupImage');
+  
+  
+  //Appending elements to their respective Parent Elements
+  popupNotification.appendChild(popupNotification__container);
+  popupNotification__container.appendChild(popupImage);
+  popupNotification__container.appendChild(popupContent);
+  popupImage.appendChild(popupImageImg);
+  popupContent.appendChild(popupContent__top);
+  popupContent.appendChild(popupContent__bottom);
+  popupContent__top.appendChild(popupContenth2);
+  popupContent__top.appendChild(popupContenth1);
+  popupContent__bottom.appendChild(popupContentP);
+
+
+
+  //Adding content to the Elements Appended
+  var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
+  popupImageImg.src=popupInfo[randNum].img;
+  popupContenth2.innerHTML=popupInfo[randNum].h2;
+  popupContenth1.innerHTML=popupInfo[randNum].h1;
+  popupContentP.innerHTML=popupInfo[randNum].p;
+  
+  //adding whole element in body
+  document.querySelector('body').appendChild(popupNotification);
+
+
+
+
+  var timeOut,
+      isChange=true,
+      intervalTime=(3500+(Math.random()*1000));
+
+  setInterval(function (e) {
+      popupNotification__container.classList.toggle('hide');
+      // timeOut=setTimeout(changeContent,500);
+     
+      isChange=(!isChange);
+      //Adding content to the Elements Appended
+      if(isChange){
+          var randNum=Math.floor(Math.random()*10)%(popupInfo.length-1);
+          popupImageImg.src=popupInfo[randNum].img;
+          popupContenth2.innerHTML=popupInfo[randNum].h2;
+          popupContenth1.innerHTML=popupInfo[randNum].h1;
+          popupContentP.innerHTML=popupInfo[randNum].p;
+      }  },intervalTime);
+  
+  
+  function changeContent() {
+      clearTimeout(timeOut);
+      
+  }
+  
+  
+  
+
+</script>
+
+</body>
+</html>
