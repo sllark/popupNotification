@@ -2,29 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Title</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   
-  
   <style>
-    
+  
     *{
       border: 0;
       margin: 0;
       padding: 0;
+      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       font-family: 'Open Sans', sans-serif;
-  
+    
     }
     body{
       width: 100vw;
       height: 100vh;
       background-color: #C4CAD3;
     }
-    
+  
     .popupNotification{
-      min-width: 370px;
-      min-height: 110px;
+      /*min-width: 370px;*/
+      /*min-height: 110px;*/
       width: 370px;
       height: 110px;
       position: absolute;
@@ -39,17 +40,31 @@
       border-radius: 60px;
       width: 100%;
       height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
       padding: 10px 10px;
+      -webkit-transition: all 1s;
+      -o-transition: all 1s;
       transition: all 1s;
     }
-    
+  
     .popupImage{
       height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
       border-radius: 100%;
       /*background-color: black;*/
@@ -60,38 +75,129 @@
     .popupImage img{
       width: auto;
       height: 90%;
-      
+    
     }
-    
-    
+  
+  
     .popupContent{
       height: 100%;
       overflow: hidden;
       margin: 0 8px;
       width: 70%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-flow: column;
       flex-flow: column;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
       justify-content: space-between;
     }
     .popupContent__top{
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-flow: column;
       flex-flow: column;
     }
     .popupContent__top h2{
       font-size: 14px;
       color: #001b3e;
+      font-weight: 500;
     }
     .popupContent__top h1{
       font-size: 18px;
       padding-top: 2px;
       letter-spacing: 0.5px;
       color: #000811;
+      font-weight: 600;
     }
-    
+  
   
     .hide{
+      -webkit-transform: translateY(120%);
+      -ms-transform: translateY(120%);
       transform: translateY(120%);
     }
+  
+    @media (max-width: 500px) {
+      .popupNotification{
+        width: 320px;
+        height: 95px;
+      }
+      .popupNotification__container{
+        padding: 8px;
+      }
+      .popupContent{
+        width: 74%;
+        margin: 0 6px;
+      }
+      .popupContent__top h2{
+        font-size: 12px;
+      }
+    
+      .popupContent__top h1{
+        font-size: 15px;
+      }
+    
+      .popupContent__bottom p{
+        font-size: 14px;
+      }
+    }
+  
+    @media (max-width: 400px) {
+    
+      .popupNotification{
+        bottom: 25px;
+        left: 15px;
+        width: 300px;
+        height: 90px;
+      }
+    
+      .popupContent__top h2{
+        font-size: 10px;
+        letter-spacing: 0.5px;
+      }
+    
+      .popupContent__top h1{
+        font-size: 13px;
+      }
+    
+      .popupContent__bottom p{
+        font-size: 13px;
+      }
+    }
+  
+  
+    @media (max-width: 350px) {
+    
+      .popupNotification{
+        bottom: 15px;
+        left: 10px;
+        width: 270px;
+        height: 85px;
+      }
+    
+      .popupContent__top h2{
+        font-size: 10px;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+      }
+    
+      .popupContent__top h1{
+        font-size: 11px;
+        font-weight: 600;
+      }
+    
+      .popupContent__bottom p{
+        font-size: 12px;
+      }
+    }
+
   </style>
   
 </head>
@@ -184,7 +290,8 @@
 
   //Adding classes to all elements
   popupNotification.classList.add('popupNotification');
-  popupNotification__container.classList.add('popupNotification__container');
+    popupNotification__container.classList.add('popupNotification__container');
+    popupNotification__container.classList.add('hide');
   popupImage.classList.add('popupImage');
   popupContent.classList.add('popupContent');
   popupContent__top.classList.add('popupContent__top');
@@ -227,9 +334,9 @@
 
 
     var isChange=true,
-        isVisible=true,
+        isVisible=false,
         popUpInterval,
-        intervalRandValue=(3500+(Math.random()*1000)),
+        intervalRandValue=(5000+(Math.random()*1000)),
         timeCounter=0,
         changeContentInterval;
 
